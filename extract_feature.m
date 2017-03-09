@@ -32,7 +32,7 @@ function [row_min, row_max, col_min, col_max] = coordinates(image)
     
     % find the minimum row
     for r = 1:row
-        if mean(double(image(r,:))) ~= 1.0
+        if sum(image(r,:)) ~= col
             row_min = r;
             break
         end
@@ -40,23 +40,25 @@ function [row_min, row_max, col_min, col_max] = coordinates(image)
     
     for r = 0:row - 1
         r_bot = row - r;
-        if mean(double(image(r_bot,:))) ~= 1.0
+        if sum(image(r_bot,:)) ~= col
             row_max = r_bot;
             break
         end    
     end
     
     % find the minimum column
+    compare = (row_max-row_min+1);
     for c = 1:col
-        if mean(double(image(row_min:row_max,c))) ~= 1.0
+        if sum(image(row_min:row_max,c)) ~= compare
             col_min = c;
             break
         end
     end
+
     
     for c = 0:col- 1
         c_bot = col - c;
-        if mean(double(image(row_min:row_max,c_bot))) ~= 1.0
+        if sum(image(row_min:row_max,c_bot)) ~= compare
             col_max = c_bot;
             break
         end
