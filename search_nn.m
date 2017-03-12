@@ -1,7 +1,8 @@
-function search_neural_network(net, feature)
+function letter = search_neural_network(net, feature)
     y = sim(net, feature);
     [c i] = max(y);
     c
+    letter = i;
     i
     %letter = search(i);
 end

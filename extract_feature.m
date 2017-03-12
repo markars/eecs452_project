@@ -11,13 +11,13 @@ function normalized = extract_feature(image)
    
     % Display feature extracted image
     extracted = BW_image(row_min:row_max, col_min:col_max);
-    figure;
-    imshow(extracted); title('feature extraction');
+%     figure;
+%     imshow(extracted); title('feature extraction');
 
     % Normalize feature
     normalized = normalize(extracted);
-    figure;
-    imshow(normalized); title('normalized 9 x 9');
+%     figure;
+%     imshow(normalized); title('normalized 9 x 9');
 end
 
 % ----------------------------------------------------------------------
@@ -114,15 +114,15 @@ function new = normalize(image)
     
     % image matrix size needs to be multiple of 9: zero-pad
     num = 28; % matrix width and height size
-    if mod(row,num) ~= 0 || mod(col,9) ~= 0
+    if mod(row,num) ~= 0 || mod(col,num) ~= 0
         add_r = num-mod(row,num);
         add_c = num-mod(col,num);
         
         image_padded = padarray(image, [add_r  add_c], 1, 'post');
         row = size(image_padded,1);
         col = size(image_padded,2);
-        figure;
-        imshow(image_padded); title('zero padding');
+%         figure;
+%         imshow(image_padded); title('zero padding');
     end
      
     % normalize by box region
